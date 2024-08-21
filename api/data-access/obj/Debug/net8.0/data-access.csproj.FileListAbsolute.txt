@@ -1,0 +1,11 @@
+D:\test\project-udemy-turkey\api\data-access\bin\Debug\net8.0\data-access.deps.json
+D:\test\project-udemy-turkey\api\data-access\bin\Debug\net8.0\data-access.dll
+D:\test\project-udemy-turkey\api\data-access\bin\Debug\net8.0\data-access.pdb
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\data-access.GeneratedMSBuildEditorConfig.editorconfig
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\data-access.AssemblyInfoInputs.cache
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\data-access.AssemblyInfo.cs
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\data-access.csproj.CoreCompileInputs.cache
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\data-access.dll
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\refint\data-access.dll
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\data-access.pdb
+D:\test\project-udemy-turkey\api\data-access\obj\Debug\net8.0\ref\data-access.dll
