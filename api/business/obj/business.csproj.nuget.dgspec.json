@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\test\\project-udemy-turkey\\api\\business\\business.csproj": {}
+    "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\api\\business\\business.csproj": {}
   },
   "projects": {
-    "D:\\test\\project-udemy-turkey\\api\\business\\business.csproj": {
+    "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\api\\business\\business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\test\\project-udemy-turkey\\api\\business\\business.csproj",
+        "projectUniqueName": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\api\\business\\business.csproj",
         "projectName": "business",
-        "projectPath": "D:\\test\\project-udemy-turkey\\api\\business\\business.csproj",
-        "packagesPath": "C:\\Users\\Sorasak.sia\\.nuget\\packages\\",
-        "outputPath": "D:\\test\\project-udemy-turkey\\api\\business\\obj\\",
+        "projectPath": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\api\\business\\business.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\api\\business\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Sorasak.sia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
