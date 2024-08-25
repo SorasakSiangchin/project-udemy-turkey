@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MyGalaxy_Auction.props" />
+</Project>
