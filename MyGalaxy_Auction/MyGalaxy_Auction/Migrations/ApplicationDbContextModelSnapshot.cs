@@ -238,8 +238,9 @@ namespace MyGalaxy_Auction.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
@@ -260,8 +261,9 @@ namespace MyGalaxy_Auction.Migrations
                     b.Property<int>("Millage")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlateNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("PlateNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");

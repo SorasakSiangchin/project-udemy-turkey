@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\MyGalaxy_Auction\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{479E01C2-457C-46D6-847B-1773E63C6598}|MyGalaxy_Auction\\MyGalaxy_Auction.csproj|d:\\development\\reacts\\reactts\\project-udemy-turkey\\mygalaxy_auction\\mygalaxy_auction\\concrete\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{479E01C2-457C-46D6-847B-1773E63C6598}|MyGalaxy_Auction\\MyGalaxy_Auction.csproj|solutionrelative:mygalaxy_auction\\concrete\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{479E01C2-457C-46D6-847B-1773E63C6598}|MyGalaxy_Auction\\MyGalaxy_Auction.csproj|d:\\development\\reacts\\reactts\\project-udemy-turkey\\mygalaxy_auction\\mygalaxy_auction\\context\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{479E01C2-457C-46D6-847B-1773E63C6598}|MyGalaxy_Auction\\MyGalaxy_Auction.csproj|solutionrelative:mygalaxy_auction\\context\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,37 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\MyGalaxy_Auction\\MyGalaxy_Auction\\Concrete\\UserService.cs",
-              "RelativeDocumentMoniker": "MyGalaxy_Auction\\Concrete\\UserService.cs",
-              "ToolTip": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\MyGalaxy_Auction\\MyGalaxy_Auction\\Concrete\\UserService.cs",
-              "RelativeToolTip": "MyGalaxy_Auction\\Concrete\\UserService.cs",
-              "ViewState": "AQIAAIAAAAAAAAAAAAAgwI8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:43:59.71Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\MyGalaxy_Auction\\MyGalaxy_Auction\\Context\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "MyGalaxy_Auction\\Context\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\Development\\Reacts\\reactTs\\project-udemy-turkey\\MyGalaxy_Auction\\MyGalaxy_Auction\\Context\\ApplicationDbContext.cs",
-              "RelativeToolTip": "MyGalaxy_Auction\\Context\\ApplicationDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T15:38:46.545Z",
-              "EditorCaption": ""
             }
           ]
         },

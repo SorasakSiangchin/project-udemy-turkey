@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using core.Models;
 using data_access.Context;
+using data_access.Domain;
+using Microsoft.EntityFrameworkCore;
 using MyGalaxy_Auction.Abstraction;
 using MyGalaxy_Auction.Dtos;
+using System.Net;
 
 namespace MyGalaxy_Auction.Concrete
 {
@@ -22,34 +25,119 @@ namespace MyGalaxy_Auction.Concrete
             _response = response;
         }
 
-        public Task<ApiResponse> ChangeVehicleStatus(int vehicleId)
+        public async Task<ApiResponse> ChangeVehicleStatus(int vehicleId)
         {
-            throw new NotImplementedException();
+            var result = await _context
+                .Vehicles
+                .FindAsync(vehicleId);
+
+            if(result == null)
+            {
+                _response.IsSuccess = false;
+                return _response;
+            }
+
+            result.IsActive = false;
+            _response.IsSuccess = true;
+            await _context.SaveChangesAsync();
+            return _response;
         }
 
-        public Task<ApiResponse> CreateVehicle(CreateVehicleDTO model)
+        public async Task<ApiResponse> CreateVehicle(CreateVehicleDTO model)
         {
-            throw new NotImplementedException();
+            if (model != null)
+            {
+                var objDto =  _mapper.Map<Vehicle>(model);
+                if (objDto != null)
+                {
+                    _context.Vehicles.Add(objDto);
+                    if (await _context.SaveChangesAsync() > 0)
+                    {
+                        _response.IsSuccess = true;
+                        _response.Result = model;
+                        _response.StatusCode = HttpStatusCode.OK;
+                        return _response;
+                    }
+                }
+            }
+
+            _response.IsSuccess = false;
+            _response.ErrorMessages.Add("Ooop! Something went wrong");
+            return _response;
         }
 
-        public Task<ApiResponse> DeleteVehicle(int vehicleId)
+        public async Task<ApiResponse> DeleteVehicle(int vehicleId)
         {
-            throw new NotImplementedException();
+            var result = await _context.Vehicles.FindAsync(vehicleId);
+            if (result != null)
+            {
+                _context.Vehicles.Remove(result);
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    _response.IsSuccess = true;
+                    return _response;
+                }
+            }
+            _response.IsSuccess = false;
+            return _response;
         }
 
-        public Task<ApiResponse> GetVehicleById(int vehicleId)
+        public async Task<ApiResponse> GetVehicleById(int vehicleId)
         {
-            throw new NotImplementedException();
+            var result = await _context
+                .Vehicles
+                .Include(x => x.Seller)
+                .FirstOrDefaultAsync(x => x.VehicleId == vehicleId);
+
+            if(result != null)
+            {
+                _response.Result = result;
+                _response.IsSuccess = true;
+                return _response;
+            }
+
+            _response.IsSuccess = false ;
+            return _response;
         }
 
-        public Task<ApiResponse> GetVehicles()
+        public async Task<ApiResponse> GetVehicles()
         {
-            throw new NotImplementedException();
+           var vehicles =
+                await _context
+                .Vehicles
+                .Include(x => x.Seller)
+                .ToListAsync();
+
+            if(vehicles != null)
+            {
+                _response.IsSuccess = true;
+                _response.Result = vehicles;
+                return _response;
+            }
+
+            _response.IsSuccess = false;
+            return _response;
         }
 
-        public Task<ApiResponse> UpdateVehicleResponse(int vehicleId, UpdateVehicleDTO model)
+        public async Task<ApiResponse> UpdateVehicleResponse(int vehicleId, UpdateVehicleDTO model)
         {
-            throw new NotImplementedException();
+            var result = await _context
+                .Vehicles
+                .FindAsync(vehicleId);
+
+            if(result != null)
+            {
+                Vehicle objDto = _mapper.Map(model , result);
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    _response.IsSuccess= true;
+                    _response.Result = objDto;
+                    return _response;
+                }
+            }
+
+            _response.IsSuccess = false;
+            return _response;
         }
     }
 }

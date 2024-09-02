@@ -47,63 +47,51 @@ namespace MyGalaxy_Auction.Concrete
         {
             try
             {
-                ApplicationUser userFromDb = _context
-                    .ApplicationUsers
-                    .FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
-
+                ApplicationUser userFromDb = _context.ApplicationUsers.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
                 if (userFromDb != null)
                 {
                     bool isValid = await _userManager.CheckPasswordAsync(userFromDb, model.Password);
-
-                    // ถ้าผิด
                     if (!isValid)
                     {
-                        _response.StatusCode = HttpStatusCode.BadRequest;
-                        _response.ErrorMessages.Add("your enter information is not corrent");
+                        _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                        _response.ErrorMessages.Add("Your entry information is not correct");
                         _response.IsSuccess = false;
-
                         return _response;
                     }
-
-                    // get role
                     var role = await _userManager.GetRolesAsync(userFromDb);
-
-                    // jwt
                     JwtSecurityTokenHandler tokenHandler = new();
-                    byte[] key = Encoding.ASCII.GetBytes(secretKey);
+
+                    var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"));
 
                     SecurityTokenDescriptor tokenDescriptor = new()
                     {
                         Subject = new ClaimsIdentity(new Claim[]
                         {
-                            new Claim(ClaimTypes.NameIdentifier ,userFromDb.Id ) ,
-                            new Claim(ClaimTypes.Email , userFromDb.Email) ,
-                            new Claim(ClaimTypes.Role , role.FirstOrDefault()) ,
-                            new Claim("fullName" ,userFromDb.FullName ) ,
+                        new Claim(ClaimTypes.NameIdentifier, userFromDb.Id),
+                        new Claim(ClaimTypes.Email, userFromDb.Email),
+                        new Claim(ClaimTypes.Role, role.FirstOrDefault() == null ? "NormalUser" : role.FirstOrDefault()),
+                        new Claim("fullName", userFromDb.FullName)
                         }),
                         Expires = DateTime.UtcNow.AddDays(1),
-                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                        SigningCredentials = new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256Signature)
+
                     };
 
                     SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
-                    LoginResponseModel loginResponseModel = new()
+                    LoginResponseModel _model = new()
                     {
                         Email = userFromDb.Email,
-                        Token = tokenHandler.WriteToken(token)
+                        Token = tokenHandler.WriteToken(token),
                     };
-
-                    _response.Result = loginResponseModel;
+                    _response.Result = _model;
                     _response.IsSuccess = true;
-                    _response.StatusCode = HttpStatusCode.OK;
-
+                    _response.StatusCode = System.Net.HttpStatusCode.OK;
                     return _response;
+
                 }
-
-
                 _response.IsSuccess = false;
                 _response.ErrorMessages.Add("Ooops! something went wrong");
-
                 return _response;
             }
             catch (Exception)
@@ -170,7 +158,7 @@ namespace MyGalaxy_Auction.Concrete
 
                     }
 
-                    if (model.UserType.ToString().ToLower() == UserType.Seller.ToString().ToLower())
+                    else if (model.UserType.ToString().ToLower() == UserType.Seller.ToString().ToLower())
                     {
                         await _userManager.AddToRoleAsync(newUser, UserType.Seller.ToString());
 

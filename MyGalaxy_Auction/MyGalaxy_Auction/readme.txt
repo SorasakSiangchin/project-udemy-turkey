@@ -1,0 +1,3 @@
+- เทคนิคการแก้ปัญหา migration การวนลูปของ database โดยการใส่ NoAction
+- เทคนิคการใช้งาน identity framwork 
+- เทคนิคการใช้งาน enum ในการ set ข้อมูล
