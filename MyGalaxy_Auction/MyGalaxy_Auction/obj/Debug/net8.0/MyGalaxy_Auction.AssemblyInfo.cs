@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyGalaxy_Auction")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19927c98c7e9252ea7f71caa7646911a6b1284bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f6edb6bc925e9e28834f48e6e0a206432a5ba126")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyGalaxy_Auction")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyGalaxy_Auction")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
