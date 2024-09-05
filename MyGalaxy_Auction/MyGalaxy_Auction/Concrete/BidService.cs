@@ -6,6 +6,7 @@ using data_access.Domain;
 using Microsoft.EntityFrameworkCore;
 using MyGalaxy_Auction.Abstraction;
 using MyGalaxy_Auction.Dtos;
+using MyGalaxy_Auction.MailHelper;
 
 namespace MyGalaxy_Auction.Concrete
 {
@@ -14,12 +15,17 @@ namespace MyGalaxy_Auction.Concrete
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
         private readonly ApiResponse _response;
+        private readonly IMailService _mailService;
 
-        public BidService(ApplicationDbContext context , IMapper mapper , ApiResponse response)
+        public BidService(ApplicationDbContext context 
+            , IMapper mapper 
+            , ApiResponse response
+            , IMailService mailService)
         {
             _context = context;
             _mapper = mapper;
             _response = response;
+            _mailService = mailService;
         }
 
         // สร้างการประมูลอัตโนมัติ โดยเพิ่มเงินในการประมูลเดิม 10%
@@ -110,6 +116,14 @@ namespace MyGalaxy_Auction.Concrete
 
                 if (await _context.SaveChangesAsync() > 0)
                 {
+                    var userDetail = await _context
+                        .Bids
+                        .Include(x => x.User)
+                        .Where(x => x.UserId == model.UserId)
+                        .FirstOrDefaultAsync();
+
+                    _mailService.SendEmail("Your bid is success", "Your bid is :" + bid.BidAmount, bid.User.UserName);
+
                     _response.IsSuccess = true;
                     _response.Result = true;
                     return _response;
