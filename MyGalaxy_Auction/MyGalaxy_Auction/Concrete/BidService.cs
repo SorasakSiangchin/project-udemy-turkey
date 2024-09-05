@@ -22,9 +22,32 @@ namespace MyGalaxy_Auction.Concrete
             _response = response;
         }
 
-        public Task<ApiResponse> AutomaticallyCreateBid(CreateBidDTO model)
+        // สร้างการประมูลอัตโนมัติ โดยเพิ่มเงินในการประมูลเดิม 10%
+        public async Task<ApiResponse> AutomaticallyCreateBid(CreateBidDTO model)
         {
-            throw new NotImplementedException();
+            var isPaid = await CheckIsPaidAuction(model.UserId, model.VehicleId);
+            if (!isPaid)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages.Add("Please before pay auction price");
+                return _response;
+            }
+
+            var result = await _context.Bids.Where(x => x.VehicleId == model.VehicleId && x.Vehicle.IsActive == true).OrderByDescending(x => x.BidAmount).ToListAsync();
+            if (result.Count == 0)
+            {
+                _response.IsSuccess = false;
+                return _response;
+            }
+
+            var objDTO = _mapper.Map<Bid>(model);
+            objDTO.BidAmount = result[0].BidAmount + (result[0].BidAmount * 10) / 100;
+            objDTO.BidDate = DateTime.Now;
+            _context.Bids.Add(objDTO);
+            await _context.SaveChangesAsync();
+            _response.IsSuccess = true;
+            _response.Result = result;
+            return _response;
         }
 
         public Task<ApiResponse> CancelBid(int bidId)
@@ -113,9 +136,17 @@ namespace MyGalaxy_Auction.Concrete
             return _response;
         }
 
-        public Task<ApiResponse> GetBidByVehicleId(int vehicleId)
+        public async Task<ApiResponse> GetBidByVehicleId(int vehicleId)
         {
-            throw new NotImplementedException();
+            var obj = await _context.Bids.Include(x => x.Vehicle).ThenInclude(x => x.Bids).Where(x => x.VehicleId == vehicleId).ToListAsync();
+            if (obj != null)
+            {
+                _response.IsSuccess = true;
+                _response.Result = obj;
+                return _response;
+            }
+            _response.IsSuccess = false;
+            return _response;
         }
 
         public async Task<ApiResponse> UpdateBid(int bidId, UpdateBidDTO model)
