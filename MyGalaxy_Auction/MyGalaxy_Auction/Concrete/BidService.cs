@@ -67,12 +67,12 @@ namespace MyGalaxy_Auction.Concrete
             var isPaid = await CheckIsPaidAuction(model.UserId , model.VehicleId);
 
             // ชำระเงินก่อนทำการประมูล
-            if (!isPaid)
-            {
-                _response.IsSuccess = false;
-                _response.ErrorMessages.Add("Please before pay auction price");
-                return _response;
-            }
+            //if (!isPaid)
+            //{
+            //    _response.IsSuccess = false;
+            //    _response.ErrorMessages.Add("Please before pay auction price");
+            //    return _response;
+            //}
 
             // รถคันนี้ไม่ได้ใช้งาน
             if (returnValue == null)
