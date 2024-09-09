@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using core.Models;
 using data_access.Context;
 using data_access.Domain;
