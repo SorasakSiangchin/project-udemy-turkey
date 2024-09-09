@@ -10,6 +10,10 @@ namespace MyGalaxy_Auction
         {
             CreateMap<CreateVehicleDTO, Vehicle>().ReverseMap();
             CreateMap<UpdateVehicleDTO, Vehicle>();
+            CreateMap<CreateBidDTO, Bid>();
+            CreateMap<UpdateBidDTO, Bid>();
+
+            CreateMap<CreatePaymentHitoryDto, PaymentHistory>();
         }
     }
 }

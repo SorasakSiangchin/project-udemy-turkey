@@ -1,5 +1,8 @@
 - เทคนิคการแก้ปัญหา migration การวนลูปของ database โดยการใส่ NoAction
 - เทคนิคการใช้งาน identity framwork 
 - เทคนิคการใช้งาน enum ในการ set ข้อมูล
-- เทคนิคการใช้งาน Minekit => Nuget Package (ใช้สำหรับการสร้างและการจัดการ MIME (Multipurpose Internet Mail Extensions) ซึ่งเป็นมาตรฐานสำหรับการจัดรูปแบบข้อความอีเมลและไฟล์แนบในอีเมล MimeKit ถูกออกแบบมาให้มีประสิทธิภาพสูงและใช้งานง่ายสำหรับการทำงานกับอีเมลในแอปพลิเคชัน .NET)
+- เทคนิคการใช้งาน Mimekit => Nuget Package (ใช้สำหรับการสร้างและการจัดการ MIME (Multipurpose Internet Mail Extensions) ซึ่งเป็นมาตรฐานสำหรับการจัดรูปแบบข้อความอีเมลและไฟล์แนบในอีเมล MimeKit ถูกออกแบบมาให้มีประสิทธิภาพสูงและใช้งานง่ายสำหรับการทำงานกับอีเมลในแอปพลิเคชัน .NET)
+- การใช้งาน MailKit => ที่ใช้สำหรับการส่งและรับอีเมลผ่านโปรโตคอล SMTP, POP3 และ IMAP โดยมีการออกแบบให้มีประสิทธิภาพสูงและปลอดภัย นอกจากนี้ยังรองรับการทำงานกับ MIME 
 - https://stackoverflow.com/questions/72543208/how-to-use-mailkit-with-google-after-may-30-2022 (generate secret mail)
+- การใช้งาน Stripe
+- เทคนิคการผูกค่า configuration กับ opject
