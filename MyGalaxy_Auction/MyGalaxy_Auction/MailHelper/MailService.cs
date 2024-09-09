@@ -27,7 +27,6 @@ namespace MyGalaxy_Auction.MailHelper
             }
             catch (Exception ex)
 			{
-
 				throw ex;
 			}
         }

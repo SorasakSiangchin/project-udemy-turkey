@@ -13,7 +13,8 @@ builder.Services.AddPersistenceLayer(builder.Configuration);
 builder.Services.AddApplicationLayer(builder.Configuration);
 builder.Services.AddSwaggerCollection(builder.Configuration);
 builder.Services.AddInfrastructureLayer(builder.Configuration);
-
+builder.Services.AddCors();
+    
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +23,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(x => 
+    x.AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
+    .AllowCredentials());
 
 app.UseHttpsRedirection();
 
