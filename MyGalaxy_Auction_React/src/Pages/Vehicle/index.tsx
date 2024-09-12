@@ -1,3 +1,3 @@
 import VehicleList from "./VehicleList";
-
-export { VehicleList };
+import Circle from "./Circle";
+export { VehicleList, Circle };
