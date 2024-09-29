@@ -5,20 +5,29 @@ import { accountApi } from "../Api/accountApi";
 import { authenticationReducer } from "./Redux/authenticationSlice";
 import bidApi from "../Api/bidApi";
 import paymentHistoryApi from "../Api/paymentHistoryApi";
+import paymentApi from "../Api/paymentApi";
+import { orderReducer } from "./Redux/orderSlice";
 
 const store = configureStore({
   reducer: {
     vehicleReducer,
     authenticationReducer,
+    orderReducer,
     // [] มีความสำคัญเมื่อ key นั้นเป็นตัวแปรหรือ expression ที่ต้องการการประเมินผล (evaluation) ก่อนที่จะใช้เป็น key จริงๆ
     // ในกรณีนี้, JavaScript จะพยายามใช้ accountApi.reducerPath และ vehicleApi.reducerPath เป็น string ตรงๆ ซึ่งจะทำให้เกิดข้อผิดพลาดทางไวยากรณ์ (syntax error).
     [vehicleApi.reducerPath]: vehicleApi.reducer,
     [accountApi.reducerPath]: accountApi.reducer,
     [bidApi.reducerPath]: bidApi.reducer,
     [paymentHistoryApi.reducerPath]: paymentHistoryApi.reducer,
+    [paymentApi.reducerPath]: paymentApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(vehicleApi.middleware, accountApi.middleware, bidApi.middleware, paymentHistoryApi.middleware),
+    getDefaultMiddleware().concat(
+      vehicleApi.middleware
+      , accountApi.middleware
+      , bidApi.middleware
+      , paymentHistoryApi.middleware
+      , paymentApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -10,8 +10,10 @@ import { RootState } from '../../Storage/store'
 import userModel from '../../interfaces/userModel'
 import CreateBid from './CreateBid'
 import { useGetVehicleByIdQuery } from '../../Api/vehicleApi'
+import { useNavigate } from 'react-router-dom'
 
 const BidsDetail = ({ vehicleId }: { vehicleId: string }) => {
+    const Navigate = useNavigate();
 
     const { data, isLoading } = useGetBidByVehicleIdQuery(parseInt(vehicleId))
     const userStore: userModel = useSelector((state: RootState) => state.authenticationReducer);
@@ -20,6 +22,14 @@ const BidsDetail = ({ vehicleId }: { vehicleId: string }) => {
     const [checkStatusAuction] = useCheckStatusAuctionPriceMutation()
     const [result, setResultState] = useState();
     const response_data = useGetVehicleByIdQuery(parseInt(vehicleId));
+
+    const handleBidCheckout = (props: any) => {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            Navigate("/login");
+        }
+        Navigate(`/Vehicle/BidCheckout/${props}`)
+    }
 
     useEffect(() => {
         const checkModel: checkStatus = {
@@ -51,7 +61,7 @@ const BidsDetail = ({ vehicleId }: { vehicleId: string }) => {
                 ) : (
 
                     <div className='container mb-5' style={{ display: 'flex', justifyContent: "center" }}  >
-                        <button className='btn btn-warning' type='button' onClick={() => { }} >Pay PreAuction Price  ${response_data.currentData?.result.auctionPrice}  </button>
+                        <button className='btn btn-warning' type='button' onClick={() => handleBidCheckout(vehicleId)} >Pay PreAuction Price  ${response_data.currentData?.result.auctionPrice}  </button>
                     </div>
                 )
             }

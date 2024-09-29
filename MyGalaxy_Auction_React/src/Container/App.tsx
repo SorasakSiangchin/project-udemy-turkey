@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import userModel from "../interfaces/userModel";
 import { setLoggedInUser } from "../Storage/Redux/authenticationSlice";
+import BidCheckout from "../Pages/Bid/BidCheckout";
+import Payment from "../Pages/Payment/Payment";
 
 function App() {
   const Dispatch = useDispatch();
@@ -32,6 +34,8 @@ function App() {
           <Route path="/Vehicle/VehicleId/:vehicleId" element={<VehicleDetail />} ></Route>
           <Route path="/Register" element={<Register />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Vehicle/BidCheckout/:vehicleId" element={<BidCheckout />} />
+          <Route path="/Payment" element={<Payment />} />
         </Routes>
       </div>
     </div>
