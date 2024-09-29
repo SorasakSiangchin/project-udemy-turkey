@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { VehicleModel } from '../../interfaces/vehicleModel'
 import './Styles/Circle.css'
+import formatTime from '../../Utility/formatTime'
 const Circle = ({ vehicle }: {
     vehicle: VehicleModel
 }) => {
@@ -10,8 +11,10 @@ const Circle = ({ vehicle }: {
     function calculateCountDown() {
         // แปลงให้เป็น มิลลิวินาทีในรูปแบบของ Unix timestamp
         const endTime = new Date(vehicle.endTime).getTime();
+
         // แปลงเวลาปัจจุบันให้เป็น มิลลิวินาทีในรูปแบบของ Unix timestamp
         const currentTime = new Date().getTime();
+
         // หาความต่างของเวลาที่เหลือ
         const timeRemaining = endTime - currentTime;
 
@@ -44,7 +47,7 @@ const Circle = ({ vehicle }: {
     return (
         <div className='circle' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} >
             <h1 className='text-dark' style={{ fontSize: '16px' }} >
-                {countdown === 0 ? 'Auction Ended' : countdown}
+                {countdown === 0 ? 'Auction Ended' : formatTime(countdown)}
             </h1>
         </div>
     )

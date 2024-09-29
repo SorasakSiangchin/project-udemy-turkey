@@ -84,6 +84,7 @@ namespace MyGalaxy_Auction.Concrete
                         Email = userFromDb.Email,
                         Token = tokenHandler.WriteToken(token),
                     };
+
                     _response.Result = _model;
                     _response.IsSuccess = true;
                     _response.StatusCode = System.Net.HttpStatusCode.OK;

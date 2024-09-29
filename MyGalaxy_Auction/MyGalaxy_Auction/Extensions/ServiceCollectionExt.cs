@@ -15,7 +15,8 @@ namespace MyGalaxy_Auction.Extensions
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IBidService, BidService>();
             services.AddScoped<IMailService, MailService>();
-            
+            services.AddScoped<IPaymentHistoryService, PaymentHistoryService>();
+
             // มั่นใจว่าจะมีการสร้างอินสแตนซ์ใหม่สำหรับการร้องขอแต่ละครั้ง
             services.AddScoped(typeof(ApiResponse));
             #endregion
