@@ -4,15 +4,18 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Loader } from '../../Helper';
 import CheckoutForm from './CheckoutForm';
+import { Modal } from 'react-bootstrap';
 
 const Payment = () => {
     const { state } = useLocation();
     // ข็อมูลที่ส่งมาทาง path
-    const { apiResult, userStore } = state;
+    const { apiResult } = state;
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const [show, setShow] = useState(true);
+
+    const handleShow = () => setShow(true)
+    const handleClose = () => setShow(false)
+
 
     // Publishable key
     const stripePromise = loadStripe("pk_test_51PwQHqCnIQpNd3QECMcYApWYURg5wRS3v4ynHfqGVcG0WDEmuRDZFSwVTmDvcLlfWekEETGYeneQKxBn9cLfX3RT00TZ5Ls9cz")
@@ -23,17 +26,20 @@ const Payment = () => {
             clientSecret: apiResult.clientSecret,
         };
 
-        return <div className="">
+        return <>
             <Elements stripe={stripePromise} options={options} >
                 <div className='container m5 p-5' >
+
                     <div className='row' >
-                        <div className=' container' >
-                            <CheckoutForm />
-                        </div>
+                        <Modal show={show} onHide={handleShow}>
+                            <div className=' container' >
+                                <CheckoutForm />
+                            </div>
+                        </Modal>
                     </div>
                 </div>
             </Elements>
-        </div>
+        </>
     }
 
     else {

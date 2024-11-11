@@ -1,10 +1,15 @@
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../Storage/store';
 
 const CheckoutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
     const [isProcessing, setIsProcessing] = useState(false)
+    const Navigate = useNavigate()
+    const vehicleId: string = useSelector((state: RootState) => state.vehicleReducer.vehicleId)
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         // We don't want to let default form submission happen here,
@@ -29,11 +34,12 @@ const CheckoutForm = () => {
         if (result.error) {
             // Show error to your customer (for example, payment details incomplete)
             setIsProcessing(false);
-        } else {
-            // Your customer will be redirected to your `return_url`. For some payment
-            // methods like iDEAL, your customer will be redirected to an intermediate
-            // site first to authorize the payment, then redirected to the `return_url`.
         }
+
+        if (result.paymentIntent?.status === "succeeded") {
+            Navigate(`/Vehicle/BidCheckout/${vehicleId}`)
+        }
+
         setIsProcessing(false);
 
     };

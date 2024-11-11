@@ -16,8 +16,8 @@ const Register = () => {
 
     const handleRegistrationSubmit = async () => {
         const result: apiResponse = await userRegisterMutation({
-            username: userData.username,
-            fullname: userData.fullname,
+            userName: userData.username,
+            fullName: userData.fullname,
             password: userData.password,
             userType: userData.userType
         })

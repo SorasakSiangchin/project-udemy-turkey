@@ -51,7 +51,6 @@ const BidCheckout = () => {
             }))
         }
 
-
         if (vehicleId) {
             Dispatch(getVehicle(vehicleId!))
 
